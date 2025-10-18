@@ -21,7 +21,7 @@ class Help(commands.Cog):
             # Loop pelos comandos da Cog
             for command  in cog.get_commands():
                 descricao = command.help if command.help  else command.name
-                comandos_lista += f"/{command.name} -  {descricao} \n"
+                comandos_lista += f"?{command.name} -  {descricao} \n"
 
 
             # Adiciona um campo no embed para cada Cog
