@@ -12,7 +12,7 @@ YDL_OPTIONS = {'format': 'bestaudio/best', 'noplaylist': True, 'default_search':
 
 
 # --- A Classe do Cog de Música ---
-class MusicCog(commands.Cog):
+class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.voice_clients = {}
@@ -193,4 +193,4 @@ class MusicCog(commands.Cog):
 
 # --- Função Setup para carregar o Cog ---
 async def setup(bot):
-    await bot.add_cog(MusicCog(bot))
+    await bot.add_cog(Music(bot))
