@@ -8,7 +8,7 @@ class Limparchat(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="limparchat", description="Limpa uma quantidade de mensagens do chat (até 1000).")
+    @app_commands.command(name="limparchat", description="[MODERAÇAO]Limpa uma quantidade de mensagens do chat (até 1000).")
     @app_commands.checks.has_permissions(administrator=True)
     async def limparchat(self, interaction: discord.Interaction, quantidade: int,):
 

@@ -15,16 +15,16 @@ CANAL_VAGAS_ID = 1429126835828031679  # ID do canal de vagas
 
 TERMS = [
     "python", "javascript", "java", "c#", "c++", "php", "ruby", "go", "typescript", "swift", "kotlin",
-    "frontend", "backend", "fullstack", "desenvolvedor", "estagio",
+    "frontend", "backend", "fullstack", "desenvolvedor", "estagio","Estagio",
     "android", "ios", "flutter", "react native",
     "react", "angular", "vue", "nodejs", "express", "django", "flask",
     "sql", "mysql", "postgresql", "mongodb",
     "devops", "aws", "docker", "kubernetes",
     "data scientist", "machine learning", "ai",
-    "junior"
+    "junior","ESTAGIO"
 ]
 
-MAX_TERMS = 25           # máximo de termos a serem processados
+MAX_TERMS = 500         # máximo de termos a serem processados
 MAX_VAGAS_POR_EXEC = 25   # máximo de vagas a enviar por execução
 
 class VagasAutomatizadas(commands.Cog):
@@ -38,7 +38,7 @@ class VagasAutomatizadas(commands.Cog):
         self.postar_vagas.cancel()
         self.limpar_canal.cancel()
 
-    @tasks.loop(minutes=10)
+    @tasks.loop(minutes=2)
     async def postar_vagas(self):
         canal = self.bot.get_channel(CANAL_VAGAS_ID)
         if not canal:
@@ -46,7 +46,7 @@ class VagasAutomatizadas(commands.Cog):
             return
 
         url = "https://api.adzuna.com/v1/api/jobs/br/search/1"
-        vagas_enviadas_essa_exec = 0  # controla o máximo por execução
+        vagas_enviadas_essa_exec = 0 # controla o máximo por execução
 
         for i, termo in enumerate(TERMS):
             if i >= MAX_TERMS:
