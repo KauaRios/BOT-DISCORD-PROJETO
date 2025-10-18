@@ -13,6 +13,7 @@ APP_ID = os.getenv("ADZUNA_APP_ID")
 APP_KEY = os.getenv("ADZUNA_APP_KEY")
 CANAL_VAGAS_ID = 1429126835828031679  # ID do canal de vagas
 
+
 TERMS = [
     "python", "javascript", "java", "c#", "c++", "php", "ruby", "go", "typescript", "swift", "kotlin",
     "frontend", "backend", "fullstack", "desenvolvedor", "estagio","Estagio",
@@ -24,8 +25,11 @@ TERMS = [
     "junior","ESTAGIO"
 ]
 
-MAX_TERMS = 500         # máximo de termos a serem processados
-MAX_VAGAS_POR_EXEC = 25   # máximo de vagas a enviar por execução
+MAX_TERMS =5      # máximo de termos a serem processados
+MAX_VAGAS_POR_EXEC =5  # máximo de vagas a enviar por execução
+FOTO_EMBED = "./cogs/meubot.png"
+
+
 
 class VagasAutomatizadas(commands.Cog):
     def __init__(self, bot):
@@ -38,7 +42,10 @@ class VagasAutomatizadas(commands.Cog):
         self.postar_vagas.cancel()
         self.limpar_canal.cancel()
 
-    @tasks.loop(minutes=2)
+
+
+
+    @tasks.loop(minutes=30)
     async def postar_vagas(self):
         canal = self.bot.get_channel(CANAL_VAGAS_ID)
         if not canal:
@@ -84,7 +91,11 @@ class VagasAutomatizadas(commands.Cog):
                         description=f"**Empresa:** {empresa}\n**Local:** {local}\n[🔗 Ver vaga]({link})",
                         color=discord.Color.green()
                     )
-                    await canal.send(embed=embed)
+                    with open(FOTO_EMBED, "rb") as f:  # abre a imagem local
+                        picture = discord.File(f)  # cria o arquivo para enviar
+                        embed.set_image(url="attachment://meubot.png")  # diz que o embed vai usar esse arquivo
+                        await canal.send(file=picture, embed=embed)  # envia o embed junto com a image
+
 
                     vagas_enviadas_essa_exec += 1
                     if vagas_enviadas_essa_exec >= MAX_VAGAS_POR_EXEC:
@@ -99,7 +110,7 @@ class VagasAutomatizadas(commands.Cog):
         await self.bot.wait_until_ready()
         print("✅ Loop de vagas iniciado!")
 
-    @tasks.loop(minutes=30)
+    @tasks.loop(hours=23)
     async def limpar_canal(self):
         canal = self.bot.get_channel(CANAL_VAGAS_ID)
         if not canal:
