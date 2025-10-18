@@ -19,9 +19,10 @@ class Help(commands.Cog):
         for cog_name, cog in self.bot.cogs.items():
             comandos_lista = ""
             # Loop pelos comandos da Cog
-            for command in cog.get_commands():
-                descricao = command.help if command.help else "Sem descrição"
-                comandos_lista += f"/{command.name} - {descricao}\n"
+            for command  in cog.get_commands():
+                descricao = command.help if command.help  else command.name
+                comandos_lista += f"/{command.name} -  {descricao} \n"
+
 
             # Adiciona um campo no embed para cada Cog
             embed.add_field(name=cog_name, value=comandos_lista, inline=False)

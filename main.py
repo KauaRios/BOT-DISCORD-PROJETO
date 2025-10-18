@@ -51,7 +51,7 @@ async def on_reaction_add(reaction, user):
         return
     emoji = reaction.emoji
     channel= reaction.message.channel
-    await channel.send(f" o membro {user.mention}  reagiu a sua mensagem com {emoji} ")
+    await channel.send(f"o membro {user.mention} reagiu a sua mensagem com {emoji}.")
 
 
 
