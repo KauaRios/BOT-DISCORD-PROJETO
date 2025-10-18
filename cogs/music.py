@@ -44,7 +44,7 @@ class MusicCog(commands.Cog):
             # Se o bot ainda estiver conectado, espera um tempo antes de sair.
             if vc and vc.is_connected():
                 # Espera 60 segundos. Se outra música for adicionada nesse tempo, ele não desconecta.
-                await asyncio.sleep(60)
+                await asyncio.sleep(120)
 
                 # Depois de esperar, verifica novamente se ainda está inativo.
                 if vc.is_connected() and not vc.is_playing() and not vc.is_paused():
