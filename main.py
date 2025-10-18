@@ -45,6 +45,14 @@ async def on_member_join(member):
 
         embed.set_image(url=member.avatar.url)
         await channel.send(embed=embed)
+@bot.event
+async def on_reaction_add(reaction, user):
+    if user == bot.user:
+        return
+    emoji = reaction.emoji
+    channel= reaction.message.channel
+    await channel.send(f" o membro {user.mention}  reagiu a sua mensagem com {emoji} ")
+
 
 
 
