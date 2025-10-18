@@ -199,7 +199,7 @@ class Music(commands.Cog):
 
 
 
-
+#kaua da a bunda
 
 # --- Função Setup para carregar o Cog ---
 async def setup(bot):
