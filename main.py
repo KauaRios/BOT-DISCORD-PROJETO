@@ -64,7 +64,6 @@ async def on_reaction_add(reaction, user):
 
 
 
-
 # --- Função Principal para Carregar Cogs e Iniciar o Bot ---
 async def main():
     for filename in os.listdir('./cogs'):

@@ -154,6 +154,16 @@ class Music(commands.Cog):
         else:
             await ctx.send("Não há música tocando para pular, e a fila está vazia.")
 
+    @commands.command(name="exit",help="sai da call")
+    async def exit(self, ctx):
+        guild_id = ctx.guild.id
+        vc = self.voice_clients.get(guild_id)
+        if vc and vc.is_playing():
+            vc.stop()
+            await ctx.send("Bot desconectado e fila limpa.")
+            await vc.disconnect()
+
+
     @commands.command(name="queue", help="Mostra a lista de musicas na fila.")
     async def queue(self, ctx):
         guild_id = ctx.guild.id
