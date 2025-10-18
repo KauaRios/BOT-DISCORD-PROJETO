@@ -14,10 +14,11 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 intents = discord.Intents.default()
 intents.message_content = True
 intents.voice_states = True
+intents.members = True
 
 bot = commands.Bot(command_prefix='?', intents=intents)
 
-# MANTENHA APENAS ESTA VERSÃO DO ON_READY
+
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} está online e pronto!')
@@ -30,6 +31,30 @@ async def on_ready():
 
     print(f'Comandos carregados e prontos para uso.')
     print('-----------------------------------------')
+
+
+#Evento para dar boas vindas no canal Bem vindo Adapte para o id Do canal que deseja
+@bot.event
+async def on_member_join(member):
+    channel=member.guild.get_channel(1429046615251091548)
+    if channel:
+        embed=discord.Embed(
+            title=f"{member.name}",
+            description=f"{member.mention}  entrou Na Gang {member.guild.name}",
+            color=discord.Color.green())
+
+        embed.set_image(url=member.avatar.url)
+        await channel.send(embed=embed)
+
+
+
+
+
+
+
+
+
+
 
 # --- Função Principal para Carregar Cogs e Iniciar o Bot ---
 async def main():
