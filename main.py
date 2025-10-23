@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # Carrega o token do arquivo .env
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN')s
 
 # --- Configuração do Bot ---
 intents = discord.Intents.default()
